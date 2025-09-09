@@ -1,0 +1,27 @@
+name: Deploy Next.js static site to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # Change this if your default branch is not 'main'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Bun
+        uses: oven-sh/setup-bun@v1
+
+      - name: Install dependencies
+        run: cd front && bun install
+
+      - name: Build static site
+        run: cd front && bun run build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./front/build

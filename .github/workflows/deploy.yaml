@@ -20,6 +20,11 @@ jobs:
       - name: Start Strapi (background)
         env:
           APP_KEYS: ${{ secrets.APP_KEYS }}
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          ADMIN_JWT_SECRET: ${{ secrets.ADMIN_JWT_SECRET }}
+          API_TOKEN_SALT: ${{ secrets.API_TOKEN_SALT }}
+          ENCRYPTION_KEY: ${{ secrets.ENCRYPTION_KEY }}
+          TRANSFER_TOKEN_SALT: ${{ secrets.TRANSFER_TOKEN_SALT }}
         run: cd back && bun build src/index.ts --outdir dist && bun develop
 
       - name: Install dependencies

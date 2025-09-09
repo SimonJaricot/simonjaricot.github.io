@@ -18,7 +18,7 @@ jobs:
         run: cd back && bun install
 
       - name: Start Strapi (background)
-        run: cd back && bun build src/index.ts --outdir dist && bun develop &
+        run: cd back && bun build src/index.ts --outdir dist && bun develop
 
       - name: Install dependencies
         run: cd front && bun install

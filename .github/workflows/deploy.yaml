@@ -20,7 +20,7 @@ jobs:
       - name: Start Strapi (background)
         env:
           APP_KEYS: ${{ secrets.APP_KEYS }}
-        run: cd back && bun build src/index.ts --outdir dist && bun develop &
+        run: cd back && bun build src/index.ts --outdir dist && bun develop
 
       - name: Install dependencies
         run: cd front && bun install

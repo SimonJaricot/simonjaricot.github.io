@@ -23,12 +23,18 @@ jobs:
       - name: Install dependencies
         run: cd front && bun install
 
-      - name: Test Backend
+      - name: Wait for Strapi
         run: |
-          if curl -s http://localhost:1337/; then
-            echo "Strapi is up!"
-            break
-          fi
+          for i in {1..30}; do
+            if curl -s http://localhost:1337/; then
+              echo "Strapi is up!"
+              exit 0
+            fi
+            echo "Waiting for Strapi..."
+            sleep 2
+          done
+          echo "Strapi did not start in time"
+          exit 1
 
       - name: Build static site
         run: cd front && bun run build

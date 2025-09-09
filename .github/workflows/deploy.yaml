@@ -15,10 +15,10 @@ jobs:
         uses: oven-sh/setup-bun@v1
 
       - name: Install backend dependencies
-        run: cd back && yarn install
+        run: cd back && bun install
 
       - name: Start Strapi (background)
-        run: cd back && yarn build && yarn start
+        run: cd back && bun develop &
 
       - name: Install dependencies
         run: cd front && bun install

@@ -23,6 +23,13 @@ jobs:
       - name: Install dependencies
         run: cd front && bun install
 
+      - name: Test Backend
+        run: |
+          if curl -s http://localhost:1337/; then
+            echo "Strapi is up!"
+            break
+          fi
+
       - name: Build static site
         run: cd front && bun run build
 

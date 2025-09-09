@@ -25,7 +25,7 @@ jobs:
           API_TOKEN_SALT: ${{ secrets.API_TOKEN_SALT }}
           ENCRYPTION_KEY: ${{ secrets.ENCRYPTION_KEY }}
           TRANSFER_TOKEN_SALT: ${{ secrets.TRANSFER_TOKEN_SALT }}
-        run: cd back && bun build src/index.ts --outdir dist && bun develop
+        run: cd back && bun build src/index.ts --outdir dist && bun develop &
 
       - name: Install dependencies
         run: cd front && bun install

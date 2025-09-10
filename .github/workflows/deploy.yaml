@@ -26,7 +26,7 @@ jobs:
           ENCRYPTION_KEY: ${{ secrets.ENCRYPTION_KEY }}
           TRANSFER_TOKEN_SALT: ${{ secrets.TRANSFER_TOKEN_SALT }}
           DATABASE_CLIENT: sqlite
-          DATABASE_FILENAME: .tmp/data
+          DATABASE_FILENAME: .tmp/data.db
           DATABASE_SSL: false
         run: cd back && bun build src/index.ts --outdir dist && bun develop &
 

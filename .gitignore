@@ -76,7 +76,6 @@ $RECYCLE.BIN/
 ############################
 # Packages
 ############################
-
 *.7z
 *.csv
 *.dat
@@ -101,17 +100,18 @@ $RECYCLE.BIN/
 *.out
 *.pid
 
+!content.tar.gz
 
 ############################
 # Logs and databases
 ############################
 
-# .tmp
+.tmp
 *.log
 *.sql
-# *.sqlite
-# *.sqlite3
-
+*.sqlite
+*.sqlite3
+*.db
 
 ############################
 # Misc.

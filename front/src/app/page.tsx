@@ -3,7 +3,6 @@ async function getStrapiData(url: string) {
   try {
     const response = await fetch(baseUrl + url);
     const data = await response.json();
-    console.log("Fetched data:", data);
 
     if (!data?.data) {
       return { props: { title: 'Untitled', description: 'None' } };

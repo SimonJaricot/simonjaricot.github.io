@@ -1,14 +1,20 @@
+import { flattenAttributes } from "@/lib/utils";
+
+
 async function getStrapiData(url: string) {
   const baseUrl = "http://localhost:1337";
   try {
     const response = await fetch(baseUrl + url);
     const data = await response.json();
 
+    // TODO: 404 page
     if (!data?.data) {
       return { props: { title: 'Untitled', description: 'None' } };
     }
 
-    return data;
+    const flattenData = flattenAttributes(data);
+
+    return flattenData;
   } catch (error) {
     console.error("Error fetching data:", error);
   }
@@ -17,7 +23,7 @@ async function getStrapiData(url: string) {
 export default async function Home() {
   const strapiData = await getStrapiData("/api/home-page");
 
-  const { title, description } = strapiData.data;
+  const { title, description } = strapiData;
 
   return (
     <main className="container mx-auto py-6">

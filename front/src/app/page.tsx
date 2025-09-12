@@ -21,8 +21,9 @@ async function getStrapiData(url: string) {
 }
 
 export default async function Home() {
-  const strapiData = await getStrapiData("/api/home-page");
+  const strapiData = await getStrapiData("/api/posts");
 
+  console.dir(strapiData, { depth: null });
   const { title, description } = strapiData;
 
   return (

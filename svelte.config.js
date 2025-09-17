@@ -6,9 +6,33 @@ import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 const config = {
 	// Consult https://svelte.dev/docs/kit/integrations
 	// for more information about preprocessors
-	preprocess: [vitePreprocess(), mdsvex()],
-	kit: { adapter: adapter() },
-	extensions: ['.svelte', '.svx']
+	preprocess: [
+		vitePreprocess(),
+		mdsvex({
+			extensions: ['.md'],
+			highlight: false
+		})
+	],
+	kit: {
+		adapter: adapter(),
+		prerender: {
+			entries: [
+				'/',
+				'/about',
+				'/contact',
+				'/projects',
+				'/post/hello-world',
+				'/post/second-post',
+				'/post/typescript-tips',
+				'/post/web-performance',
+				'/post/svelte-state-management',
+				'/post/css-grid-layouts',
+				'/p/1',
+				'/p/2'
+			]
+		}
+	},
+	extensions: ['.svelte', '.svx', '.md']
 };
 
 export default config;

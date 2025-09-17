@@ -15,12 +15,12 @@ export interface PostMeta {
 }
 
 export async function getPosts(): Promise<Post[]> {
-	const modules = import.meta.glob('/src/posts/*.md');
+	const modules = import.meta.glob('/src/content/posts/*.md');
 	const posts: Post[] = [];
 
 	for (const path in modules) {
 		const mod = (await modules[path]()) as any;
-		const slug = path.replace('/src/posts/', '').replace('.md', '');
+		const slug = path.replace('/src/content/posts/', '').replace('.md', '');
 
 		if (mod.metadata) {
 			const post: Post = {
@@ -38,7 +38,7 @@ export async function getPosts(): Promise<Post[]> {
 
 export async function getPost(slug: string): Promise<Post | null> {
 	try {
-		const post = await import(`../posts/${slug}.md`);
+		const post = await import(`../content/posts/${slug}.md`);
 		return {
 			...post.metadata,
 			slug,

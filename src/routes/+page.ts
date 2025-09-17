@@ -1,10 +1,11 @@
-import { getPublishedPosts } from '$lib/posts.js';
+import { getPublishedPosts, paginatePosts } from '$lib/posts.js';
 
 export async function load() {
 	const allPosts = await getPublishedPosts();
-	const recentPosts = allPosts.slice(0, 5);
+	const paginatedData = paginatePosts(allPosts, 1, 5);
 
 	return {
-		posts: recentPosts
+		...paginatedData,
+		totalPosts: allPosts.length
 	};
 }

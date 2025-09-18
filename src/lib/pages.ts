@@ -1,13 +1,13 @@
 export interface Page {
 	title: string;
-	description: string;
+	summary: string;
 	content: any; // Svelte component
 	slug: string;
 }
 
 export interface PageMeta {
 	title: string;
-	description: string;
+	summary: string;
 }
 
 export async function getPages(): Promise<Page[]> {

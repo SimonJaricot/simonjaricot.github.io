@@ -9,9 +9,10 @@
 
 <svelte:head>
 	<link rel="icon" href={favicon} />
+	<meta property="og:title" content="My SvelteKit App" />
 </svelte:head>
 
-<div class="min-h-screen bg-white">
+<div class="mx-auto min-h-screen max-w-4xl bg-white">
 	<Navigation pages={data.pages} />
 	<main class="container mx-auto px-4 py-8">
 		{@render children?.()}

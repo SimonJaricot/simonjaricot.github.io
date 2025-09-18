@@ -43,7 +43,7 @@
 						</time>
 					</header>
 
-					<p class="mb-4 text-gray-700">{post.description}</p>
+					<p class="mb-4 text-gray-700">{post.summary}</p>
 
 					<a
 						href="/post/{post.slug}"

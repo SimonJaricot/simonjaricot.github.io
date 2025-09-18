@@ -7,13 +7,13 @@
 
 <svelte:head>
 	<title>{post.title} - My Blog</title>
-	<meta name="description" content={post.description} />
+	<meta name="description" content={post.summary} />
 	<meta property="og:title" content={post.title} />
-	<meta property="og:description" content={post.description} />
+	<meta property="og:description" content={post.summary} />
 	<meta property="og:type" content="article" />
 	<meta name="twitter:card" content="summary" />
 	<meta name="twitter:title" content={post.title} />
-	<meta name="twitter:description" content={post.description} />
+	<meta name="twitter:description" content={post.summary} />
 </svelte:head>
 
 <article class="max-w-4xl">
@@ -28,7 +28,7 @@
 				})}
 			</time>
 		</div>
-		<p class="mt-4 text-xl text-gray-700">{post.description}</p>
+		<p class="mt-4 text-xl text-gray-700">{post.summary}</p>
 	</header>
 
 	<div class="prose prose-lg max-w-none">

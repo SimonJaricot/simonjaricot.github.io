@@ -6,7 +6,7 @@
 
 <svelte:head>
 	<title>{data.page.title} - My Blog</title>
-	<meta name="description" content={data.page.description} />
+	<meta name="description" content={data.page.summary} />
 </svelte:head>
 
 <div class="max-w-4xl">

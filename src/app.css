@@ -1,2 +1,34 @@
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
+
+@theme {
+  /* Set Fira Code Mono as default sans-serif font family */
+  --font-family-sans: 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+  /* Set Google Sans Code (Source Code Pro) as monospace font family */
+  --font-family-mono: 'Source Code Pro', 'Consolas', 'Monaco', 'Courier New', monospace;
+  /* Add Gochi Hand for headings */
+  --font-family-heading: 'Gochi Hand', cursive;
+}
+
+/* Apply Gochi Hand to all heading elements */
+h1, h2, h3, h4, h5, h6,
+.prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
+  font-family: 'Gochi Hand', cursive;
+}
+
+/* Ensure all code elements use Google Sans Code (Source Code Pro) with ligatures */
+code,
+pre,
+.font-mono,
+.prose pre,
+.prose code,
+.prose pre code {
+  font-family: 'Source Code Pro', 'Consolas', 'Monaco', 'Courier New', monospace;
+  font-feature-settings: 'liga' 1, 'calt' 1;
+  font-variant-ligatures: normal;
+}
+
+/* Ensure body text uses Fira Code Mono (default sans-serif) */
+body {
+  font-family: 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
+}

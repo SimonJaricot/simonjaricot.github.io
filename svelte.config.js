@@ -32,23 +32,27 @@ const config = {
     })
   ],
   kit: {
-    adapter: adapter(),
-    prerender: {
-      entries: [
-        '/',
-        '/about',
-        '/contact',
-        '/projects',
-        '/post/hello-world',
-        '/post/second-post',
-        '/post/typescript-tips',
-        '/post/web-performance',
-        '/post/svelte-state-management',
-        '/post/css-grid-layouts',
-        '/p/1',
-        '/p/2'
-      ]
-    }
+    adapter: adapter({
+      pages: 'build',
+      assets: 'build',
+      fallback: undefined,
+      precompress: false,
+      strict: true,
+    }),
+    // prerender: {
+    //   entries: [
+    //     '/',
+    //     '/about',
+    //     '/post/hello-world',
+    //     '/post/second-post',
+    //     '/post/typescript-tips',
+    //     '/post/web-performance',
+    //     '/post/svelte-state-management',
+    //     '/post/css-grid-layouts',
+    //     '/p/1',
+    //     '/p/2'
+    //   ]
+    // }
   },
   extensions: ['.svelte', '.svx', '.md']
 };

@@ -1,11 +1,16 @@
 <script lang="ts">
 	import { page } from '$app/stores';
+	import type { Page } from '$lib/pages.js';
+
+	interface Props {
+		pages?: Page[];
+	}
+
+	let { pages = [] }: Props = $props();
 
 	const navItems = [
 		{ href: '/', label: 'Home' },
-		{ href: '/about', label: 'About' },
-		{ href: '/projects', label: 'Projects' },
-		{ href: '/contact', label: 'Contact' }
+		...pages.map(p => ({ href: `/${p.slug}`, label: p.title }))
 	];
 </script>
 

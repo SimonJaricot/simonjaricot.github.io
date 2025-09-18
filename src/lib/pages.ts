@@ -10,6 +10,28 @@ export interface PageMeta {
 	description: string;
 }
 
+export async function getPages(): Promise<Page[]> {
+	const modules = import.meta.glob('/src/content/pages/*.md');
+	const pages: Page[] = [];
+
+	for (const path in modules) {
+		const mod = (await modules[path]()) as any;
+		const slug = path.replace('/src/content/pages/', '').replace('.md', '');
+
+		if (mod.metadata) {
+			const page: Page = {
+				...mod.metadata,
+				slug,
+				content: mod.default
+			};
+
+			pages.push(page);
+		}
+	}
+
+	return pages.sort((a, b) => a.title.localeCompare(b.title));
+}
+
 export async function getPage(slug: string): Promise<Page | null> {
 	try {
 		const page = await import(`../content/pages/${slug}.md`);

@@ -1,6 +1,6 @@
 ---
 title: Essential TypeScript Tips for Better Code
-description: Learn practical TypeScript techniques that will improve your code quality and developer experience
+summary: Learn practical TypeScript techniques that will improve your code quality and developer experience
 date: '2025-01-05'
 published: true
 ---

@@ -1,6 +1,6 @@
 ---
 title: Modern CSS Grid Layouts
-description: Master CSS Grid to create responsive and flexible layouts without complexity
+summary: Master CSS Grid to create responsive and flexible layouts without complexity
 date: '2024-12-25'
 published: true
 ---

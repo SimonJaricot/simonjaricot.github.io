@@ -1,6 +1,6 @@
 ---
 title: Web Performance Optimization Strategies
-description: Practical techniques to make your web applications faster and more responsive
+summary: Practical techniques to make your web applications faster and more responsive
 date: '2025-01-01'
 published: true
 ---

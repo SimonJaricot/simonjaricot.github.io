@@ -4,7 +4,8 @@
 They should have:
 
 - a title
-- a description
+- a summary
+- a cover image
 - a content (supporting images, code blocks, etc.)
 - a publication date
 - a published state (true or false)

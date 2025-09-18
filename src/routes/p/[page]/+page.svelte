@@ -26,6 +26,15 @@
 		<div class="mb-12 space-y-8">
 			{#each posts as post}
 				<article class="border-b border-gray-200 pb-8 last:border-b-0">
+					{#if post.cover}
+						<div class="mb-4">
+							<img
+								src={post.cover}
+								alt={post.title}
+								class="aspect-video w-full rounded-lg object-cover"
+							/>
+						</div>
+					{/if}
 					<header class="mb-4">
 						<h2 class="mb-2 text-xl font-semibold">
 							<a

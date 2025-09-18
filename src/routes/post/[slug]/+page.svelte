@@ -18,6 +18,15 @@
 
 <article class="max-w-4xl">
 	<header class="mb-8 border-b border-gray-200 pb-6">
+		{#if post.cover}
+			<div class="mb-6">
+				<img
+					src={post.cover}
+					alt={post.title}
+					class="aspect-video w-full rounded-lg object-cover"
+				/>
+			</div>
+		{/if}
 		<h1 class="mb-4 text-4xl font-bold text-gray-900">{post.title}</h1>
 		<div class="flex items-center text-gray-600">
 			<time datetime={post.date} class="text-sm">

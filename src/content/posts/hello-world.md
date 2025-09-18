@@ -1,11 +1,12 @@
 ---
 title: Hello World
-description: My first blog post using SvelteKit and MDsveX
+summary: My first blog post using SvelteKit and MDsveX
+cover: /images/hello.jpeg
 date: '2025-01-15'
 published: true
 ---
 
-# Hello World!
+# Hello World
 
 Welcome to my new blog built with **SvelteKit** and **MDsveX**.
 
@@ -15,7 +16,7 @@ This is a sample post to demonstrate the markdown capabilities:
 
 ```javascript
 function greet(name) {
-	return `Hello, ${name}!`;
+ return `Hello, ${name}!`;
 }
 
 console.log(greet('World'));

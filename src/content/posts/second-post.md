@@ -1,6 +1,6 @@
 ---
 title: Getting Started with SvelteKit
-description: A comprehensive guide to building modern web applications
+summary: A comprehensive guide to building modern web applications
 date: '2025-01-10'
 published: true
 ---

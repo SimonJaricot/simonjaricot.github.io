@@ -1,6 +1,7 @@
 export interface Post {
 	title: string;
 	summary: string;
+	cover?: string;
 	content: any; // Svelte component
 	date: string;
 	published: boolean;
@@ -10,6 +11,7 @@ export interface Post {
 export interface PostMeta {
 	title: string;
 	summary: string;
+	cover?: string;
 	date: string;
 	published: boolean;
 }

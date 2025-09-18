@@ -1,6 +1,6 @@
 ---
 title: State Management in Svelte 5
-description: Explore the new state management patterns and runes in Svelte 5
+summary: Explore the new state management patterns and runes in Svelte 5
 date: '2024-12-28'
 published: true
 ---

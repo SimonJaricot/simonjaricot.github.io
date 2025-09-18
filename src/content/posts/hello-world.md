@@ -1,7 +1,7 @@
 ---
 title: Hello World
 summary: My first blog post using SvelteKit and MDsveX
-cover: /images/hello.jpeg
+cover: hello
 date: '2025-01-15'
 published: true
 ---

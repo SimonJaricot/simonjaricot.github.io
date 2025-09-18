@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Image from '$lib/components/Image.svelte';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
@@ -20,10 +21,11 @@
 	<header class="mb-8 border-b border-gray-200 pb-6">
 		{#if post.cover}
 			<div class="mb-6">
-				<img
+				<Image
 					src={post.cover}
 					alt={post.title}
 					class="aspect-video w-full rounded-lg object-cover"
+					sizes="(max-width: 768px) 100vw, 1200px"
 				/>
 			</div>
 		{/if}

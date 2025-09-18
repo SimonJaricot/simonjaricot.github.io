@@ -1,9 +1,17 @@
 import tailwindcss from '@tailwindcss/vite';
+import { enhancedImages } from '@sveltejs/enhanced-img';
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 
 export default defineConfig({
-	plugins: [tailwindcss(), sveltekit()],
+	plugins: [
+		enhancedImages({
+			formats: ['avif', 'webp', 'jpg'],
+			generateSizes: [400, 800, 1200]
+		}), 
+		tailwindcss(), 
+		sveltekit()
+	],
 	optimizeDeps: {
 		exclude: ['lightningcss', 'fsevents']
 	},

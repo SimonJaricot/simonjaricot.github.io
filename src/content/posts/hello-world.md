@@ -10,6 +10,8 @@ published: true
 
 Welcome to my new blog built with **SvelteKit** and **MDsveX**.
 
+Before working hard, here is another beautiful image from Bretagne:
+![wow](plage)
 This is a sample post to demonstrate the markdown capabilities:
 
 ## Code Blocks

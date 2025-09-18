@@ -35,6 +35,10 @@
 
 	let { src = '', alt, class: className = '', sizes }: Props = $props();
 	
+	// Default styling for images (same as cover images)
+	const defaultClasses = 'aspect-video w-full rounded-lg object-cover';
+	const finalClassName = className || defaultClasses;
+	
 	// Use provided sizes or generate default responsive sizes
 	const imageSizes = sizes || getImageSizes();
 	
@@ -76,11 +80,11 @@
 		<enhanced:img 
 			src={imagePath()}
 			{alt} 
-			class={className}
+			class={finalClassName}
 			sizes={imageSizes}
 		/>
 	{:else}
-		<img src={imagePath()} {alt} class={className} />
+		<img src={imagePath()} {alt} class={finalClassName} />
 	{/if}
 {/if}
 

@@ -1,27 +1,21 @@
-// Image registry for enhanced-img processing
-// Import all images that should be optimized with enhanced-img
-
-import helloImage from './images/hello.jpeg';
-
-// Map of image keys to their enhanced imports
-export const imageRegistry = {
-	'hello': helloImage,
-	// Add more images here as needed
-	// 'another-image': anotherImage,
-} as const;
-
-export type ImageKey = keyof typeof imageRegistry;
+// Image utilities for enhanced-img processing
 
 /**
- * Get an enhanced image by key, fallback to regular path if not found
+ * Generate optimized sizes attribute for responsive images
  */
-export function getImage(key: string): string | undefined {
-	return imageRegistry[key as ImageKey];
+export function getImageSizes(breakpoints?: string[]): string {
+	if (breakpoints) {
+		return breakpoints.join(', ');
+	}
+	
+	// Default responsive sizes
+	return '(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw';
 }
 
 /**
- * Check if an image key exists in the enhanced registry
+ * Check if a source string is a supported image format
  */
-export function hasEnhancedImage(key: string): key is ImageKey {
-	return key in imageRegistry;
+export function isImageFile(src: string): boolean {
+	const imageExtensions = ['.jpg', '.jpeg', '.png', '.webp', '.avif', '.gif'];
+	return imageExtensions.some(ext => src.toLowerCase().includes(ext));
 }

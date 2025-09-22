@@ -22,13 +22,18 @@
 
 		<div class="flex space-x-6">
 			{#each navItems as item}
-				<a
-					href={item.href}
-					class="text-blue-700 transition-colors duration-200 hover:text-blue-900"
-					class:underline={$page.url.pathname === item.href}
-				>
-					{item.label}
-				</a>
+				{#if $page.url.pathname === item.href}
+					<span class="text-stone-400 underline">
+						{item.label}
+					</span>
+				{:else}
+					<a
+						href={item.href}
+						class="text-blue-700 transition-colors duration-200 hover:text-blue-900"
+					>
+						{item.label}
+					</a>
+				{/if}
 			{/each}
 		</div>
 	</div>

@@ -6,8 +6,6 @@ date: '2025-01-15'
 published: true
 ---
 
-# Hello World
-
 Welcome to my new blog built with **SvelteKit** and **MDsveX**.
 
 Before working hard, here is another beautiful image from Bretagne:

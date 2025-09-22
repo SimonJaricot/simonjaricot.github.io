@@ -8,7 +8,7 @@
 </script>
 
 <svelte:head>
-	<title>Blog Posts - Page {currentPage} - My Blog</title>
+	<title>blog posts - page {currentPage} - simon's blog</title>
 	<meta
 		name="description"
 		content="Browse all blog posts about web development, programming, and technology. Page {currentPage} of {totalPages}."

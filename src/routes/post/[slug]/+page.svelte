@@ -7,7 +7,7 @@
 </script>
 
 <svelte:head>
-	<title>{post.title} - My Blog</title>
+	<title>{post.title} - simon's blog</title>
 	<meta name="description" content={post.summary} />
 	<meta property="og:title" content={post.title} />
 	<meta property="og:description" content={post.summary} />
@@ -29,7 +29,7 @@
 				/>
 			</div>
 		{/if}
-		<h1 class="mb-4 text-4xl font-bold text-stone-900">{post.title}</h1>
+		<h1 class="text-4xl font-bold text-stone-900">{post.title}</h1>
 		<div class="flex items-center text-stone-600">
 			<time datetime={post.date} class="text-sm">
 				{new Date(post.date).toLocaleDateString('en-US', {
@@ -39,10 +39,10 @@
 				})}
 			</time>
 		</div>
-		<p class="mt-4 text-xl text-stone-700">{post.summary}</p>
+		<p class="mt-4 text-stone-700">{post.summary}</p>
 	</header>
 
-	<div class="prose prose-lg max-w-none">
+	<div class="prose max-w-none">
 		<post.content />
 	</div>
 

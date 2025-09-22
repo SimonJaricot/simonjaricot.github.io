@@ -11,9 +11,13 @@
 }
 
 /* Apply Gochi Hand to all heading elements */
-h1, h2, h3, h4, h5, h6,
+h1, h2, h3, h4, h5, h6 {
+font-family: 'Gochi Hand', cursive;
+
+}
 .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
-  font-family: 'Gochi Hand', cursive;
+  
+  font-family: 'Fira Code', 'Consolas', 'Monaco', 'Courier New', monospace;
 }
 
 /* Ensure all code elements use Google Sans Code (Source Code Pro) with ligatures */

@@ -8,18 +8,17 @@
 </script>
 
 <svelte:head>
-	<title>My Blog - Latest Posts</title>
+	<title>simon's blog</title>
 	<meta
 		name="description"
-		content="Welcome to my blog. Read the latest posts about web development, programming, and technology."
+		content="Some tips and tricks on just about anything useless, thus indispensable."
 	/>
 </svelte:head>
 
 <div class="max-w-4xl">
 	<header class="mb-12">
-		<h1 class="mb-4 text-4xl font-bold text-stone-900">Welcome to My Blog</h1>
 		<p class="text-xl text-stone-600">
-			Discover insights about web development, programming, and technology through my latest posts.
+			Some tips and tricks on just about anything useless, thus indispensable.
 		</p>
 	</header>
 

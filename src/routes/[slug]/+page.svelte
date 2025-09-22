@@ -5,7 +5,7 @@
 </script>
 
 <svelte:head>
-	<title>{data.page.title} - My Blog</title>
+	<title>{data.page.title} - simon's blog</title>
 	<meta name="description" content={data.page.summary} />
 </svelte:head>
 
@@ -14,3 +14,4 @@
 		<data.page.content />
 	</div>
 </div>
+

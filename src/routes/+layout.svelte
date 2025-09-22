@@ -12,9 +12,11 @@
 	<meta property="og:title" content="My SvelteKit App" />
 </svelte:head>
 
-<div class="mx-auto min-h-screen max-w-4xl bg-white">
-	<Navigation pages={data.pages} />
-	<main class="container mx-auto px-4 py-8">
-		{@render children?.()}
-	</main>
+<div class="min-h-screen bg-amber-50/50">
+	<div class="mx-auto max-w-4xl">
+		<Navigation pages={data.pages} />
+		<main class="container mx-auto px-4 py-8">
+			{@render children?.()}
+		</main>
+	</div>
 </div>

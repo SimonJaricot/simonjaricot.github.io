@@ -9,28 +9,27 @@
 	let { pages = [] }: Props = $props();
 
 	const navItems = [
-		{ href: '/', label: 'Home' },
-		...pages.map(p => ({ href: `/${p.slug}`, label: p.title }))
+		{ href: '/', label: 'home' },
+		...pages.map((p) => ({ href: `/${p.slug}`, label: p.title }))
 	];
 </script>
 
-<nav class="mb-8 border-b border-gray-200 pb-4">
+<nav class="mb-8 p-4">
 	<div class="container mx-auto px-4">
-		<div class="flex items-center justify-between">
-			<a href="/" class="text-xl font-bold text-gray-900 hover:text-gray-700"> My Blog </a>
+		<h1>
+			<a href="/" class="text-6xl font-bold text-stone-800 hover:text-stone-700"> simon's blog </a>
+		</h1>
 
-			<div class="flex space-x-6">
-				{#each navItems as item}
-					<a
-						href={item.href}
-						class="text-gray-600 transition-colors duration-200 hover:text-gray-900"
-						class:text-gray-900={$page.url.pathname === item.href}
-						class:font-medium={$page.url.pathname === item.href}
-					>
-						{item.label}
-					</a>
-				{/each}
-			</div>
+		<div class="flex space-x-6">
+			{#each navItems as item}
+				<a
+					href={item.href}
+					class="text-blue-700 transition-colors duration-200 hover:text-blue-900"
+					class:underline={$page.url.pathname === item.href}
+				>
+					{item.label}
+				</a>
+			{/each}
 		</div>
 	</div>
 </nav>

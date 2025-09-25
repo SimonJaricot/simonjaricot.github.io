@@ -1,9 +1,14 @@
 <script lang="ts">
 	import Image from '$lib/components/Image.svelte';
+	import PostNavigation from '$lib/components/PostNavigation.svelte';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
-	const { post } = data;
+
+	// Make these reactive to data changes using Svelte 5 derived
+	const post = $derived(data.post);
+	const previousPost = $derived(data.previousPost);
+	const nextPost = $derived(data.nextPost);
 </script>
 
 <svelte:head>
@@ -19,6 +24,13 @@
 
 <article class="max-w-4xl">
 	<header class="mb-8 border-b border-stone-200 pb-6">
+		<h1 class="text-6xl font-bold text-stone-900">{post.title}</h1>
+		<div class="flex items-center text-stone-600">
+			<time datetime={post.date} class="text-sm">
+				{post.date}
+			</time>
+		</div>
+		<p class="my-4 text-stone-700">{post.summary}</p>
 		{#if post.cover}
 			<div class="mb-6">
 				<Image
@@ -29,37 +41,13 @@
 				/>
 			</div>
 		{/if}
-		<h1 class="text-4xl font-bold text-stone-900">{post.title}</h1>
-		<div class="flex items-center text-stone-600">
-			<time datetime={post.date} class="text-sm">
-				{new Date(post.date).toLocaleDateString('en-US', {
-					year: 'numeric',
-					month: 'long',
-					day: 'numeric'
-				})}
-			</time>
-		</div>
-		<p class="mt-4 text-stone-700">{post.summary}</p>
 	</header>
 
 	<div class="prose max-w-none">
 		<post.content />
 	</div>
 
-	<footer class="mt-12 border-t border-stone-200 pt-6">
-		<nav class="flex items-center justify-between">
-			<a
-				href="/"
-				class="inline-flex items-center font-medium text-blue-700 transition-colors duration-200 hover:text-blue-900"
-			>
-				← Back to Home
-			</a>
-			<a
-				href="/p/1"
-				class="inline-flex items-center font-medium text-blue-700 transition-colors duration-200 hover:text-blue-900"
-			>
-				All Posts →
-			</a>
-		</nav>
+	<footer class="mt-12">
+		<PostNavigation {previousPost} {nextPost} />
 	</footer>
 </article>

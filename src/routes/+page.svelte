@@ -17,7 +17,7 @@
 
 <div class="max-w-4xl">
 	<header class="mb-12">
-		<p class="text-xl text-stone-600">
+		<p class="text-stone-600">
 			Some tips and tricks on just about anything useless, thus indispensable.
 		</p>
 	</header>
@@ -26,18 +26,8 @@
 		<div class="mb-12 space-y-8">
 			{#each posts as post}
 				<article class="border-b border-stone-200 pb-8 last:border-b-0">
-					{#if post.cover}
-						<div class="mb-4">
-							<Image
-								src={post.cover}
-								alt={post.title}
-								class="aspect-video w-full rounded-lg object-cover"
-								sizes="(max-width: 768px) 100vw, 1200px"
-							/>
-						</div>
-					{/if}
 					<header class="mb-4">
-						<h2 class="mb-2 text-3xl font-semibold">
+						<h2 class="mb-2 text-6xl font-semibold">
 							<a
 								href="/post/{post.slug}"
 								class="text-stone-900 transition-colors duration-200 hover:text-blue-700"
@@ -46,21 +36,16 @@
 							</a>
 						</h2>
 						<time class="text-sm text-stone-500" datetime={post.date}>
-							{new Date(post.date).toLocaleDateString('en-US', {
-								year: 'numeric',
-								month: 'long',
-								day: 'numeric'
-							})}
+							{post.date}
 						</time>
 					</header>
-
 					<p class="mb-4 text-stone-700">{post.summary}</p>
 
 					<a
 						href="/post/{post.slug}"
-						class="inline-flex items-center font-medium text-blue-700 transition-colors duration-200 hover:text-blue-900"
+						class="inline-flex items-center text-blue-700 transition-colors duration-200 hover:text-blue-900"
 					>
-						Read more →
+						read more
 					</a>
 				</article>
 			{/each}

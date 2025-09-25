@@ -14,10 +14,10 @@
 	];
 </script>
 
-<nav class="mb-8 p-4">
+<nav class="my-8">
 	<div class="container mx-auto px-4">
 		<h1>
-			<a href="/" class="text-6xl font-bold text-stone-800 hover:text-stone-700"> simon's blog </a>
+			<a href="/" class="text-7xl font-bold text-stone-800 hover:text-stone-700"> simon's blog </a>
 		</h1>
 
 		<div class="flex space-x-6">

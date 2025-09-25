@@ -69,3 +69,35 @@ export function paginatePosts(posts: Post[], page: number, perPage: number = 5) 
 		hasPrevPage: page > 1
 	};
 }
+
+/**
+ * Get adjacent posts (previous and next) for navigation
+ * Returns the previous and next published posts relative to the given slug
+ */
+export async function getAdjacentPosts(currentSlug: string): Promise<{
+	previousPost: PostMeta | null;
+	nextPost: PostMeta | null;
+}> {
+	const posts = await getPublishedPosts();
+	const currentIndex = posts.findIndex(post => post.slug === currentSlug);
+	
+	if (currentIndex === -1) {
+		return { previousPost: null, nextPost: null };
+	}
+
+	// Previous post is the next in the array (older post)
+	const previousPost = currentIndex < posts.length - 1 ? {
+		title: posts[currentIndex + 1].title,
+		slug: posts[currentIndex + 1].slug,
+		summary: posts[currentIndex + 1].summary
+	} : null;
+
+	// Next post is the previous in the array (newer post)
+	const nextPost = currentIndex > 0 ? {
+		title: posts[currentIndex - 1].title,
+		slug: posts[currentIndex - 1].slug,
+		summary: posts[currentIndex - 1].summary
+	} : null;
+
+	return { previousPost, nextPost };
+}

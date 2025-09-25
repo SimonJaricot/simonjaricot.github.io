@@ -27,6 +27,7 @@
 								alt={post.title}
 								class="aspect-video w-full rounded-lg object-cover"
 								sizes="(max-width: 768px) 100vw, 1200px"
+								caption={post.coverCaption}
 							/>
 						</div>
 					{/if}

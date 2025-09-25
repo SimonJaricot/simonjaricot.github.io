@@ -5,11 +5,7 @@ import { defineConfig } from 'vite';
 
 export default defineConfig({
   plugins: [
-    enhancedImages({
-      formats: ['webp', 'avif', 'png', 'jpeg'],
-      quality: 80,
-      includeSourceUrls: true
-    }),
+    enhancedImages(),
     sveltekit(),
     tailwindcss()
   ],

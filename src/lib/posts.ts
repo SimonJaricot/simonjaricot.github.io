@@ -2,6 +2,7 @@ export interface Post {
 	title: string;
 	summary: string;
 	cover?: string;
+	coverCaption?: string;
 	content: any; // Svelte component
 	date: string;
 	published: boolean;
@@ -12,8 +13,10 @@ export interface PostMeta {
 	title: string;
 	summary: string;
 	cover?: string;
+	coverCaption?: string;
 	date: string;
 	published: boolean;
+	slug: string;
 }
 
 export async function getPosts(): Promise<Post[]> {
@@ -25,8 +28,14 @@ export async function getPosts(): Promise<Post[]> {
 		const slug = path.replace('/src/content/posts/', '').replace('.md', '');
 
 		if (mod.metadata) {
+			const metadata = mod.metadata;
 			const post: Post = {
-				...mod.metadata,
+				title: metadata.title,
+				summary: metadata.summary,
+				cover: metadata.cover,
+				coverCaption: metadata['cover-caption'], // Map hyphenated field to camelCase
+				date: metadata.date,
+				published: metadata.published,
 				slug,
 				content: '' // We'll load content separately when needed
 			};
@@ -41,8 +50,16 @@ export async function getPosts(): Promise<Post[]> {
 export async function getPost(slug: string): Promise<Post | null> {
 	try {
 		const post = await import(`../content/posts/${slug}.md`);
+		
+		// Map hyphenated frontmatter fields to camelCase properties
+		const metadata = post.metadata;
 		return {
-			...post.metadata,
+			title: metadata.title,
+			summary: metadata.summary,
+			cover: metadata.cover,
+			coverCaption: metadata['cover-caption'], // Map hyphenated field to camelCase
+			date: metadata.date,
+			published: metadata.published,
 			slug,
 			content: post.default
 		};
@@ -89,14 +106,22 @@ export async function getAdjacentPosts(currentSlug: string): Promise<{
 	const previousPost = currentIndex < posts.length - 1 ? {
 		title: posts[currentIndex + 1].title,
 		slug: posts[currentIndex + 1].slug,
-		summary: posts[currentIndex + 1].summary
+		summary: posts[currentIndex + 1].summary,
+		cover: posts[currentIndex + 1].cover,
+		coverCaption: posts[currentIndex + 1].coverCaption,
+		date: posts[currentIndex + 1].date,
+		published: posts[currentIndex + 1].published
 	} : null;
 
 	// Next post is the previous in the array (newer post)
 	const nextPost = currentIndex > 0 ? {
 		title: posts[currentIndex - 1].title,
 		slug: posts[currentIndex - 1].slug,
-		summary: posts[currentIndex - 1].summary
+		summary: posts[currentIndex - 1].summary,
+		cover: posts[currentIndex - 1].cover,
+		coverCaption: posts[currentIndex - 1].coverCaption,
+		date: posts[currentIndex - 1].date,
+		published: posts[currentIndex - 1].published
 	} : null;
 
 	return { previousPost, nextPost };

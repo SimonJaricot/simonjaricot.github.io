@@ -1,5 +1,5 @@
 import { error } from '@sveltejs/kit';
-import { getPost, getAdjacentPosts } from '$lib/posts.ts';
+import { getPost, getAdjacentPosts } from '$lib/posts.js';
 import type { PageLoad } from './$types';
 
 export const load: PageLoad = async ({ params, depends }) => {

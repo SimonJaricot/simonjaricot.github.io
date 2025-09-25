@@ -39,11 +39,17 @@ function transformImages() {
         }
         
         // Map HTML img attributes to our Image component props
-        const { src, alt, class: className, ...otherProps } = node.properties;
+        const { src, alt, title, class: className, ...otherProps } = node.properties;
+        
+        // Use alt text as caption if it exists and is meaningful
+        // Skip empty alt text or generic descriptions
+        const caption = alt && alt.trim() && alt.trim() !== '' ? alt.trim() : (title || '');
         
         node.properties = {
           src: src || '',
           alt: alt || '',
+          // Include caption if we have meaningful text
+          ...(caption ? { caption } : {}),
           // Only include class if it has a value, otherwise omit it to use defaults
           ...(className ? { class: className } : {}),
           ...otherProps

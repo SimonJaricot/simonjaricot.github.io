@@ -31,16 +31,6 @@
 			</time>
 		</div>
 		<p class="my-4 text-stone-700">{post.summary}</p>
-		{#if post.cover}
-			<div class="mb-6">
-				<Image
-					src={post.cover}
-					alt={post.title}
-					class="aspect-video w-full rounded-lg object-cover"
-					sizes="(max-width: 768px) 100vw, 1200px"
-				/>
-			</div>
-		{/if}
 	</header>
 
 	<div class="prose max-w-none">

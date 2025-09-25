@@ -31,9 +31,10 @@
 		alt: string;
 		class?: string;
 		sizes?: string;
+		caption?: string;
 	}
 
-	let { src = '', alt, class: className = '', sizes }: Props = $props();
+	let { src = '', alt, class: className = '', sizes, caption }: Props = $props();
 	
 	// Default styling for images (same as cover images)
 	const defaultClasses = 'aspect-video w-full rounded-lg object-cover';
@@ -76,15 +77,23 @@
 
 <!-- Render the image using either enhanced:img for local images or regular img for external URLs -->
 {#if src && imagePath()}
-	{#if useEnhanced()}
-		<enhanced:img 
-			src={imagePath()}
-			{alt} 
-			class={finalClassName}
-			sizes={imageSizes}
-		/>
-	{:else}
-		<img src={imagePath()} {alt} class={finalClassName} />
-	{/if}
+	<figure class="image-container">
+		{#if useEnhanced()}
+			<enhanced:img 
+				src={imagePath()}
+				{alt} 
+				class={finalClassName}
+				sizes={imageSizes}
+			/>
+		{:else}
+			<img src={imagePath()} {alt} class={finalClassName} />
+		{/if}
+		
+		{#if caption}
+			<figcaption class="mt-3 text-center text-sm text-stone-600">
+				{caption}
+			</figcaption>
+		{/if}
+	</figure>
 {/if}
 

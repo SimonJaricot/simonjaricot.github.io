@@ -1,18 +1,14 @@
 <script lang="ts">
+	import type { PostMeta } from '$lib/posts.js';
+
 	/**
 	 * PostNavigation component for navigating between blog posts
 	 * Provides simple previous/next post navigation with titles
 	 * Uses semantic anchor tags for static site compatibility
 	 */
-	export interface NavigationPost {
-		title: string;
-		slug: string;
-		summary?: string;
-	}
-
 	interface Props {
-		previousPost?: NavigationPost | null;
-		nextPost?: NavigationPost | null;
+		previousPost?: PostMeta | null;
+		nextPost?: PostMeta | null;
 	}
 
 	let { previousPost = null, nextPost = null }: Props = $props();

@@ -17,10 +17,23 @@ This is a sample post to demonstrate the markdown capabilities:
 
 ```javascript
 function greet(name) {
+ // Comment inside code block
  return `Hello, ${name}!`;
 }
 
 console.log(greet('World'));
+```
+
+```python
+def greet(name):
+    # hello this is a comment
+    return f"Hello, {name}!"
+
+NAME = "World"
+x = 10
+b = True
+
+print(greet(NAME))
 ```
 
 ## Lists

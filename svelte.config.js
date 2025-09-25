@@ -5,6 +5,7 @@ import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { visit } from 'unist-util-visit';
 import { fileURLToPath } from 'url';
 import { dirname, resolve } from 'path';
+import { codeToHtml } from 'shiki';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -32,19 +33,19 @@ function transformImages() {
       if (node.tagName === 'img') {
         // Transform img element to use our Image component
         node.tagName = 'Image';
-        
+
         // Ensure we have the required props
         if (!node.properties) {
           node.properties = {};
         }
-        
+
         // Map HTML img attributes to our Image component props
         const { src, alt, title, class: className, ...otherProps } = node.properties;
-        
+
         // Use alt text as caption if it exists and is meaningful
         // Skip empty alt text or generic descriptions
         const caption = alt && alt.trim() && alt.trim() !== '' ? alt.trim() : (title || '');
-        
+
         node.properties = {
           src: src || '',
           alt: alt || '',
@@ -67,8 +68,17 @@ const config = {
     vitePreprocess(),
     mdsvex({
       extensions: ['.md'],
-      highlight: false,
       layout: resolve(__dirname, 'src/lib/mdsvex.svelte'),
+      highlight: {
+        highlighter: async (code, lang = 'text') => {
+          const html = await codeToHtml(code, {
+            lang,
+            theme: 'solarized-light'
+          });
+          // Return the HTML wrapped in a way that prevents Svelte from parsing it
+          return `{@html \`${html.replace(/`/g, '\\`').replace(/\$/g, '\\$')}\`}`;
+        }
+      },
       rehypePlugins: [
         [urls, processUrl],
         transformImages

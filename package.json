@@ -47,6 +47,7 @@
 		"vitest-browser-svelte": "^0.1.0"
 	},
 	"dependencies": {
+		"shiki": "^3.13.0",
 		"unist-util-visit": "^5.0.0"
 	}
 }

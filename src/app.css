@@ -73,3 +73,20 @@ body {
 .prose code {
   font-family: 'Source Code Pro', 'Consolas', 'Monaco', 'Courier New', monospace;
 }
+
+/* Style inline code elements that have pseudo-elements */
+.prose code.inline-code {
+    font-family: 'Source Code Pro', 'Consolas', 'Monaco', 'Courier New', monospace;
+
+  background-color: #FDF6E3;
+  color: #2AA198;
+  border-radius: 4px;
+  padding: 0.2em 0.4em;
+  font-weight: light;
+}
+
+.prose code.inline-code:after,
+.prose code.inline-code:before {
+  letter-spacing: -0.2em;
+  content: '\00a0';
+}

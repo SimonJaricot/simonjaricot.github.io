@@ -2,47 +2,48 @@
 title: Useful unix/linux commands
 summary: how to split a large file and send it right away to your cloud data warehouse
 date: '2025-09-26'
-published: false
+published: true
 ---
 
-unix (and linux, of course) systems are widely used in data engineering, and sometimes you have to deal with large files.  
-before loading them to your cloud data warehouse (snowflake, bigquery, redshift, etc.), you should process them a bit. it's about money, so read on.
+unix (and linux, of course) systems are widely used in data engineering. there are a lot of nice tools to deal with large files.  
+let's see what `split`, `xargs` and `gzip` can do for you.
 
 ## less is more
 
-is it quite obvious that dealing with a big file is tedious.  
-it's like stacking logs on a winter's day. you have to think about logs, not the piles. and don't forget your gloves, your big boots and your merlin to chop wood !
-
-unix commands, like `split`, `xargs`, and `gzip`, are my tools when i work in my forest, i mean my office.  
-so, i haven't invented anything new, `split` command have been around since forever (1973), `xargs` in the late 70s, and `gzip` in the early 90s. yes, you're young.
-
-## the art of splitting logs
-
-logs are too big, split them !  
-here is a fake file with 100,000 users. nearly 9MB. it is already small but whatever.
-
 ```bash
-ls -lh
-.rw-r--r--@ 8.8M simon 25 Sep 23:59 users_100k.tsv
+split -C 100M -d -a 3 large_file.tsv chuck_
+ls chuck_* | xargs -I {} -P 4 sh -c 'gzip {}'
+gsutil -m cp *.gz gs://my-data-bucket/staging/$(date +%Y%m%d)/
 
 ```
 
-### in lines
+_the `-m` option is for parallel upload, otherwise, you can use `&&` operator after the `gzip` command._
 
-you can split the file into chunks of 10,000 lines each. here is how to do it:
+## explanation
 
-```bash
-split -l 10000 users_100k.tsv users_chunk_
-```
+### split
 
-the option `-l` means lines, then you select your file, and finally the prefix for the output files.  
-the suffix will be `aa`, `ab`, `ac`, etc. by default. or you can pass `-d -a 3` for numeric suffixes with 3 digits - `000`, `001`, `002`, etc. i'll use this instead.  
-the result ?
+what is happening here, we split a large file into smaller chunks of 100MB each.
 
-```bash
-.rw-r--r--@ 867k simon 26 Sep 11:08 󰡯 users_chunk_000
-.rw-r--r--@ 878k simon 26 Sep 11:08 󰡯 users_chunk_001
-[...]
-.rw-r--r--@ 878k simon 26 Sep 11:08 󰡯 users_chunk_009
-.rw-r--r--@   90 simon 26 Sep 11:08 󰡯 users_chunk_010
-```
+1. `-C` will divide the file into _x_ chunks of the specified size (100MB in this case). the magic here is that it will not break a line in half, so you will always have complete lines in each chunk. that's very important when dealing with csv/tsv files and the big difference with `-b` option.
+2. by default, `split` will create files with names like `xaa`, `xab`, etc. the `-d` option will use numeric suffixes instead.
+3. the `-a 3` option specifies that the suffix length should be 3 digits, giving you up to 1000 chunks (from `chuck_000` to `chuck_999`).
+4. `large_file.tsv` is the input file you want to split.
+5. `chuck_` is the prefix for the output files.
+
+easy.
+
+### xargs
+
+let's dive into some parallel processing with `xargs`. it's a bit complex, but very powerful.
+
+1. `ls chuck_*` lists all the files that start with `chuck_`. we might point `gz` files here but you get the idea.
+2. `|`, the pipe operator should be your old friend, i won't explain it here.
+3. `xargs -I {}` tells `xargs` to replace `{}` (you can use any character but this is a standard use) with each item from the input list (the files listed by `ls`).
+4. `-P 4` specifies that up to 4 processes should run in parallel. you can adjust this number based on your CPU cores and system capabilities. so be careful not to overload your system.
+
+### gzip
+
+finally, we have the `gzip` command inside a `sh -c` call, which will execute a shell command for each file.  
+`gzip {}` compresses each file, replacing the original file with a compressed version (e.g., `chuck_000` becomes `chuck_000.gz`).  
+this algorithm is very efficient for text files, especially large ones, as it can significantly reduce their size. it is not the most efficient compression algorithm out there, but it is fast and widely supported, specially by cloud data warehouses.

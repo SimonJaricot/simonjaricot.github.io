@@ -60,6 +60,30 @@ function transformImages() {
   };
 }
 
+/**
+ * Rehype plugin to add classes to code elements that will have pseudo-elements
+ */
+function addCodeClasses() {
+  return function (tree) {
+    visit(tree, 'element', (node) => {
+      if (node.tagName === 'code') {
+        // Check if this code element is inline (not inside pre)
+        const parent = node.parent;
+        const isInline = !parent || parent.tagName !== 'pre';
+
+        if (isInline) {
+          // Add class to inline code elements that will have pseudo-elements
+          const existingClass = node.properties?.class || '';
+          node.properties = {
+            ...node.properties,
+            class: existingClass ? `${existingClass} inline-code` : 'inline-code'
+          };
+        }
+      }
+    });
+  };
+}
+
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
   // Consult https://svelte.dev/docs/kit/integrations
@@ -81,7 +105,8 @@ const config = {
       },
       rehypePlugins: [
         [urls, processUrl],
-        transformImages
+        transformImages,
+        addCodeClasses
       ],
     })
   ],

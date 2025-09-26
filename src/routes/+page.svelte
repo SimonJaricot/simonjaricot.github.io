@@ -1,10 +1,9 @@
 <script lang="ts">
-	import Image from '$lib/components/Image.svelte';
 	import Pagination from '$lib/components/Pagination.svelte';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
-	const { posts, currentPage, totalPages, hasNextPage, hasPrevPage, totalPosts } = data;
+	const { posts, currentPage, totalPages } = data;
 </script>
 
 <svelte:head>
